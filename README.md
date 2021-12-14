@@ -4,20 +4,21 @@ Protein protein interactions (PPI) are crucial for protein functioning, neverthe
 
 ### Data
 The .txt files contain the PDB IDs of the protein structures belonging to the training, validation and test set.
+The zip files containing the labels ("my_lables"), fasta files ("fastas"), input ("inputs") of the training and validation ("trainval") and test set ("test"), which are needed to train and evaluate the model, can be found at https://ibi.vu.nl/downloads/multi-task-PPI/. The PPI annotations per PDB ID are also available. 
 
 ### Code
 The code is based on the OPUS-TASS model of Xu et al. (2020)
 
-The "Train_" scripts are used to train the model including the prediction tasks indicated by the following abbreviations:
+The "train_*.py" scripts are used to train the model including the prediction tasks indicated by the following abbreviations:
 IF: Protein-protein interaction interface 
 BU: Buried residues
 SA: Absolute solvent accessibility
 S3: Secondary structure in 3 classes
 S8: Secondary structure in 8 classes
 
-The model contains of a CNN, RNN and a transformer. 
-
-Training models on smaller numbers of training data (see Figure 4) is performed using a part of the total dataset ("utils_mylabels_prob_partdata" and using a part of the PPI annotations "utils_mylabels_prob_partPPI".
+All training scripts use the model, which is stored in "my_model_mylabels_prob.py", and contain a transformer ("my_transformer.py"), CNN ("my_cnn.py") and a RNN ("my_rnn_prob.py"). The classses defined in the RNN file determine which prediction tasks the output contain. 
+ 
+The code needed for training and evaluation the model on a part of the total dataset is stored in "utils_mylabels_prob_partdata.py". The code for training and evaluating the model on only a part of the PPI annotations is stored in "utils_mylabels_prob_partPPI.py". We provided the code for training and evaluating the IFBUS3SA model on only a part of the PPI annoations ("train_IFBUS3SA_partPPI.py)".
 
 ## Reference
 ...
